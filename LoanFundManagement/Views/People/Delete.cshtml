@@ -1,0 +1,60 @@
+﻿@model LoanFundManagement.Models.Person
+
+<h3 class="text-center">آیا از حذف این شخص مطمئن هستید؟</h3>
+<div class="card mt-4">
+    <div class="card-header bg-danger text-white">
+        اطلاعات شخص
+    </div>
+    <div class="card-body">
+        <dl class="row">
+            <dt class="col-sm-3">نام</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.FirstName)</dd>
+
+            <dt class="col-sm-3">نام خانوادگی</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.LastName)</dd>
+
+            <dt class="col-sm-3">کد ملی</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.NationalCode)</dd>
+
+            <dt class="col-sm-3">شماره موبایل</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.Mobile)</dd>
+
+            <dt class="col-sm-3">شماره تلفن ثابت</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.Tel)</dd>
+
+            <dt class="col-sm-3">آدرس</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.Address)</dd>
+
+            <dt class="col-sm-3">نام پدر</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.FatherName)</dd>
+
+            <dt class="col-sm-3">تاریخ تولد</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.BirthDate)</dd>
+
+            <dt class="col-sm-3">شماره شناسنامه</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.BirthCertificateNo)</dd>
+
+            <dt class="col-sm-3">محل تولد</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.BirthPlace)</dd>
+
+            <dt class="col-sm-3">شماره حساب</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.AccountNumber)</dd>
+
+            <dt class="col-sm-3">وضعیت</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.Status)</dd>
+
+            <dt class="col-sm-3">توضیحات</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.Note)</dd>
+
+            <dt class="col-sm-3">آیا ضامن است؟</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.IsGuarantor)</dd>
+        </dl>
+    </div>
+    <div class="card-footer text-center">
+        <form asp-action="Delete">
+            <input type="hidden" asp-for="PersonId" />
+            <button type="submit" class="btn btn-danger">حذف</button>
+            <a asp-action="Index" class="btn btn-secondary">بازگشت به لیست</a>
+        </form>
+    </div>
+</div>

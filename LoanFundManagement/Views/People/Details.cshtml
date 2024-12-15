@@ -1,0 +1,66 @@
+﻿@model LoanFundManagement.Models.Person
+
+
+<div class="card shadow mt-4">
+    <div class="card-header bg-primary text-white">
+        <h4 class="mb-0">اطلاعات شخص</h4>
+    </div>
+    <div class="card-body">
+        <dl class="row">
+            <dt class="col-sm-4">نام</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.FirstName)</dd>
+
+            <dt class="col-sm-4">نام خانوادگی</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.LastName)</dd>
+
+            <dt class="col-sm-4">کد ملی</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.NationalCode)</dd>
+
+            <dt class="col-sm-4">شماره موبایل</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.Mobile)</dd>
+
+            <dt class="col-sm-4">شماره تلفن ثابت</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.Tel)</dd>
+
+            <dt class="col-sm-4">آدرس</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.Address)</dd>
+
+            <dt class="col-sm-4">نام پدر</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.FatherName)</dd>
+
+            <dt class="col-sm-4">تاریخ تولد</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.BirthDate)</dd>
+
+            <dt class="col-sm-4">شماره شناسنامه</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.BirthCertificateNo)</dd>
+
+            <dt class="col-sm-4">محل تولد</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.BirthPlace)</dd>
+
+            <dt class="col-sm-4">شماره حساب</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.AccountNumber)</dd>
+
+            <dt class="col-sm-4">وضعیت</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.Status)</dd>
+
+            <dt class="col-sm-4">توضیحات</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.Note)</dd>
+
+            <dt class="col-sm-4">آیا ضامن است؟</dt>
+            <dd class="col-sm-8">
+                @if (Model.IsGuarantor)
+                {
+                    <span class="badge bg-success">بله</span>
+                }
+                else
+                {
+                    <span class="badge bg-danger">خیر</span>
+                }
+            </dd>
+        </dl>
+    </div>
+    <div class="card-footer d-flex justify-content-between">
+        <a asp-action="Edit" asp-route-id="@Model?.PersonId" class="btn btn-warning">ویرایش</a>
+        <a asp-action="Index" class="btn btn-secondary">بازگشت به لیست</a>
+    </div>
+</div>

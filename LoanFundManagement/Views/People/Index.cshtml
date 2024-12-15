@@ -1,0 +1,138 @@
+﻿@model IEnumerable<LoanFundManagement.Models.Person>
+
+@{
+    ViewData["Title"] = "لیست افراد";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 class="text-center">لیست افراد</h1>
+
+<p>
+    <button class="btn btn-success" id="btnCreateModal">افزودن شخص جدید</button>
+</p>
+
+<table class="table table-bordered table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>نام</th>
+            <th>نام خانوادگی</th>
+            <th>کد ملی</th>
+            <th>شماره موبایل</th>
+            <th>شماره تلفن ثابت</th>
+            <th>آدرس</th>
+            <th>نام پدر</th>
+            <th>تاریخ تولد</th>
+            <th>شماره شناسنامه</th>
+            <th>محل تولد</th>
+            <th>شماره حساب</th>
+            <th>وضعیت</th>
+            <th>توضیحات</th>
+            <th>آیا ضامن است؟</th>
+            <th>عملیات</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.FirstName)</td>
+                <td>@Html.DisplayFor(modelItem => item.LastName)</td>
+                <td>@Html.DisplayFor(modelItem => item.NationalCode)</td>
+                <td>@Html.DisplayFor(modelItem => item.Mobile)</td>
+                <td>@Html.DisplayFor(modelItem => item.Tel)</td>
+                <td>@Html.DisplayFor(modelItem => item.Address)</td>
+                <td>@Html.DisplayFor(modelItem => item.FatherName)</td>
+                <td>@Html.DisplayFor(modelItem => item.BirthDate)</td>
+                <td>@Html.DisplayFor(modelItem => item.BirthCertificateNo)</td>
+                <td>@Html.DisplayFor(modelItem => item.BirthPlace)</td>
+                <td>@Html.DisplayFor(modelItem => item.AccountNumber)</td>
+                <td>@Html.DisplayFor(modelItem => item.Status)</td>
+                <td>@Html.DisplayFor(modelItem => item.Note)</td>
+                <td>@(item.IsGuarantor ? "بله" : "خیر")</td> <!-- نمایش ضامن بودن -->
+                <td>
+                    <button class="btn btn-warning btn-sm btn-edit" data-id="@item.PersonId">ویرایش</button>
+                    <button class="btn btn-info btn-sm btn-details" data-id="@item.PersonId">جزئیات</button>
+                    <button class="btn btn-danger btn-sm btn-delete" data-id="@item.PersonId">حذف</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- Modal for Create/Edit/Details/Delete -->
+<div class="modal fade" id="personModal" tabindex="-1" role="dialog" aria-labelledby="personModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="personModalLabel">...</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="بستن"></button>
+            </div>
+            <div class="modal-body" id="personModalBody">
+                <!-- محتوا توسط AJAX بارگذاری می‌شود -->
+            </div>
+            <div class="modal-footer" id="personModalFooter">
+                <!-- دکمه‌ها و اقدامات مودال (در صورت نیاز) -->
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script>
+        $(document).ready(function () {
+            // باز کردن مودال افزودن
+            $("#btnCreateModal").click(function () {
+                $.get("@Url.Action("Create", "People")", function (data) {
+                    $("#personModalLabel").text("افزودن شخص جدید");
+                    $("#personModalBody").html(data);
+                    $("#personModalFooter").html(""); // حذف محتوای قبلی
+                    $("#personModal").modal("show");
+                });
+            });
+
+            // باز کردن مودال ویرایش
+            $(".btn-edit").click(function () {
+                var personId = $(this).data("id");
+                $.get("@Url.Action("Edit", "People")" + "/" + personId, function (data) {
+                    // $("#personModalLabel").text("ویرایش اطلاعات شخص");
+                    $("#personModalBody").html(data);
+                    $("#personModalFooter").html(""); // حذف محتوای قبلی
+                    $("#personModal").modal("show");
+                });
+            });
+
+            // باز کردن مودال جزئیات
+            $(".btn-details").click(function () {
+                var personId = $(this).data("id");
+                $.get("@Url.Action("Details", "People")" + "/" + personId, function (data) {
+                    $("#personModalLabel").text("جزئیات شخص");
+                    $("#personModalBody").html(data);
+                    $("#personModalFooter").html(""); // حذف محتوای قبلی
+                    $("#personModal").modal("show");
+                });
+            });
+
+            // باز کردن مودال حذف
+            $(".btn-delete").click(function () {
+                var personId = $(this).data("id");
+                $.get("@Url.Action("Delete", "People")" + "/" + personId, function (data) {
+                    $("#personModalLabel").text("حذف شخص");
+                    $("#personModalBody").html(data);
+                    $("#personModalFooter").html(
+                        '<button type="button" class="btn btn-danger" id="confirmDelete">حذف</button>'
+                    );
+                    $("#personModal").modal("show");
+
+                    // تأیید حذف
+                    $("#confirmDelete").click(function () {
+                        $.post("@Url.Action("DeleteConfirmed", "People")", { id: personId }, function () {
+                            $("#personModal").modal("hide");
+                            location.reload(); // بازنشانی صفحه پس از حذف
+                        });
+                    });
+                });
+            });
+        });
+    </script>
+}

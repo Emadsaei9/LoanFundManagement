@@ -1,0 +1,133 @@
+﻿@model LoanFundManagement.Models.Person
+
+<h1 class="text-center text-primary">ویرایش اطلاعات شخص</h1>
+<hr />
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <form asp-action="Edit" id="editPersonForm">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="PersonId" />
+
+            <div class="form-group mb-3">
+                <label asp-for="FirstName" class="form-label">نام</label>
+                <input asp-for="FirstName" class="form-control" placeholder="نام را وارد کنید" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="LastName" class="form-label">نام خانوادگی</label>
+                <input asp-for="LastName" class="form-control" placeholder="نام خانوادگی را وارد کنید" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="NationalCode" class="form-label">کد ملی</label>
+                <input asp-for="NationalCode" class="form-control" placeholder="کد ملی را وارد کنید" />
+                <span asp-validation-for="NationalCode" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Mobile" class="form-label">شماره موبایل</label>
+                <input asp-for="Mobile" class="form-control" placeholder="شماره موبایل را وارد کنید" />
+                <span asp-validation-for="Mobile" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Tel" class="form-label">شماره تلفن ثابت</label>
+                <input asp-for="Tel" class="form-control" placeholder="شماره تلفن ثابت را وارد کنید" />
+                <span asp-validation-for="Tel" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Address" class="form-label">آدرس</label>
+                <input asp-for="Address" class="form-control" placeholder="آدرس را وارد کنید" />
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="FatherName" class="form-label">نام پدر</label>
+                <input asp-for="FatherName" class="form-control" placeholder="نام پدر را وارد کنید" />
+                <span asp-validation-for="FatherName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="BirthDate" class="form-label">تاریخ تولد</label>
+                <input asp-for="BirthDate" type="date" class="form-control" />
+                <span asp-validation-for="BirthDate" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="BirthCertificateNo" class="form-label">شماره شناسنامه</label>
+                <input asp-for="BirthCertificateNo" class="form-control" placeholder="شماره شناسنامه را وارد کنید" />
+                <span asp-validation-for="BirthCertificateNo" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="BirthPlace" class="form-label">محل تولد</label>
+                <input asp-for="BirthPlace" class="form-control" placeholder="محل تولد را وارد کنید" />
+                <span asp-validation-for="BirthPlace" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="AccountNumber" class="form-label">شماره حساب</label>
+                <input asp-for="AccountNumber" class="form-control" placeholder="شماره حساب را وارد کنید" />
+                <span asp-validation-for="AccountNumber" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Status" class="form-label">وضعیت</label>
+                <input asp-for="Status" class="form-control" placeholder="وضعیت را وارد کنید" />
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Note" class="form-label">توضیحات</label>
+                <textarea asp-for="Note" class="form-control" placeholder="توضیحات را وارد کنید"></textarea>
+                <span asp-validation-for="Note" class="text-danger"></span>
+            </div>
+
+            <div class="form-group form-check mb-3">
+                <input class="form-check-input" type="checkbox" asp-for="IsGuarantor" id="IsGuarantor" />
+                <label class="form-check-label" for="IsGuarantor">آیا ضامن است؟</label>
+            </div>
+
+            <div class="d-flex justify-content-between">
+                <button type="submit" class="btn btn-primary">ذخیره تغییرات</button>
+                <a asp-action="Index" class="btn btn-secondary">بازگشت به لیست</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            // ارسال فرم به صورت AJAX
+            $("#editPersonForm").submit(function (event) {
+                event.preventDefault(); // جلوگیری از ارسال فرم به صورت پیش‌فرض
+
+                var formData = $(this).serialize(); // جمع‌آوری داده‌های فرم
+
+                $.ajax({
+                    url: $(this).attr("action"), // مسیر اکشن ویرایش
+                    type: "POST",
+                    data: formData,
+                    success: function (response) {
+                        if (response.success) {
+                            $("#personModal").modal("hide"); // بستن مودال پس از موفقیت
+                            location.reload(); // بارگذاری مجدد صفحه
+                        } else {
+                            alert("مشکلی در ذخیره اطلاعات به وجود آمده است.");
+                        }
+                    },
+                    error: function () {
+                        alert("خطا در ارسال درخواست.");
+                    }
+                });
+            });
+        });
+    </script>
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

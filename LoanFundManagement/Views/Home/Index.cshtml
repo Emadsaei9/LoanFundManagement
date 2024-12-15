@@ -1,0 +1,67 @@
+﻿@{
+    ViewData["Title"] = "خوش آمدید";
+}
+
+<div class="container mt-5">
+    <h1 class="text-center">به صندوق خوش آمدید!</h1>
+    <p class="text-center">ما در اینجا هستیم تا به شما در مدیریت مالی و تسهیلات کمک کنیم.</p>
+
+    <div class="row mt-4">
+        <div class="col-md-3 text-center">
+            <div class="card  custom-card " onclick="location.href='@Url.Action("index", "People")';" style="cursor: pointer;">
+                <div class="icon m-3">
+                    <i class="fas fa-user-friends fa-3x"></i>
+                </div>
+                <div class="card-body">
+                    <h4>مدیریت کاربران</h4>
+                    <p>می توانید کاربران را مدیریت کنید</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 text-center">
+            <div class="card  custom-card " onclick="location.href='@Url.Action("index", "People")';" style="cursor: pointer;">
+                <div class="icon m-3">
+                    <i class="fas fa-users fa-3x"></i>
+                </div>
+                <div class="card-body">
+                    <h4>مدیریت اعضا</h4>
+                    <p>ما به شما کمک می‌کنیم تا اعضای صندوق را به راحتی مدیریت کنید.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 text-center">
+            <div class="card custom-card">
+                <div class="icon m-3">
+                    <i class="fas fa-money-bill-wave fa-3x"></i>
+                </div>
+                <div class="card-body">
+                    <h4>دریافت و پرداخت</h4>
+                    <p>پرداخت‌ها و دریافت‌ها را به سادگی و با امنیت انجام دهید.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 text-center">
+            <div class="card custom-card">
+                <div class="icon m-3">
+                    <i class="fas fa-hand-holding-usd fa-3x"></i>
+                </div>
+                <div class="card-body">
+                    <h4>اعطای تسهیلات</h4>
+                    <p>تسهیلات مالی را به اعضای خود اعطا کنید و روند کار را تسهیل کنید.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 text-center">
+            <div class="card custom-card">
+                <div class="icon m-3">
+                    <i class="fas fa-calendar-check fa-3x"></i>
+                </div>
+                <div class="card-body">
+                    <h4>پرداخت اقساط</h4>
+                    <p>پرداخت اقساط را به راحتی مدیریت کنید و یادآوری‌ها را تنظیم کنید.</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
