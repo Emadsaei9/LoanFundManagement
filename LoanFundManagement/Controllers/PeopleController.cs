@@ -19,25 +19,8 @@ namespace LoanFundManagement.Controllers
         // GET: People
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Persons.ToListAsync());
-        }
-
-        // GET: People/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var person = await _context.Persons
-                .FirstOrDefaultAsync(m => m.PersonId == id);
-            if (person == null)
-            {
-                return NotFound();
-            }
-
-            return View(person);
+            var people = await _context.Persons.ToListAsync();
+            return View(people);
         }
 
         // GET: People/Create
@@ -51,16 +34,20 @@ namespace LoanFundManagement.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("PersonId,FirstName,LastName,NationalCode,Mobile,Tel,Address,FatherName,BirthDate,BirthCertificateNo,BirthPlace,AccountNumber,Status,Note,IsGuarantor")] Person person)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                _context.Add(person);
-                await _context.SaveChangesAsync();
+                var validationErrors = ModelState.Values
+                    .SelectMany(v => v.Errors)
+                    .Select(e => e.ErrorMessage)
+                    .ToList();
 
-                // ارسال پاسخ موفقیت‌آمیز به AJAX
-                return Json(new { success = true });
+                return Json(new { success = false, errors = validationErrors });
             }
-            // در صورت بروز خطا، ارسال پاسخ خطا
-            return Json(new { success = false });
+
+            _context.Add(person);
+            await _context.SaveChangesAsync();
+
+            return Json(new { success = true });
         }
 
         // GET: People/Edit/5
@@ -76,6 +63,7 @@ namespace LoanFundManagement.Controllers
             {
                 return NotFound();
             }
+
             return PartialView(person);
         }
 
@@ -89,62 +77,20 @@ namespace LoanFundManagement.Controllers
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                try
-                {
-                    _context.Update(person);
-                    await _context.SaveChangesAsync();
-                    // ارسال پاسخ موفقیت‌آمیز به AJAX
-                    return Json(new { success = true });
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!PersonExists(person.PersonId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-            }
-            // در صورت بروز خطا، ارسال پاسخ خطا
-            return Json(new { success = false });
-        }
+                var validationErrors = ModelState.Values
+                    .SelectMany(v => v.Errors)
+                    .Select(e => e.ErrorMessage)
+                    .ToList();
 
-        // GET: People/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
+                return Json(new { success = false, errors = validationErrors });
             }
 
-            var person = await _context.Persons
-                .FirstOrDefaultAsync(m => m.PersonId == id);
-            if (person == null)
-            {
-                return NotFound();
-            }
+            _context.Update(person);
+            await _context.SaveChangesAsync();
 
-            return PartialView(person);
-        }
-
-        // POST: People/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var person = await _context.Persons.FindAsync(id);
-            if (person != null)
-            {
-                _context.Persons.Remove(person);
-                await _context.SaveChangesAsync();
-            }
-
-            return RedirectToAction(nameof(Index));
+            return Json(new { success = true });
         }
 
         private bool PersonExists(int id)

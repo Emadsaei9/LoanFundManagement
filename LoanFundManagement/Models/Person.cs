@@ -54,6 +54,7 @@ namespace LoanFundManagement.Models
         public bool IsGuarantor { get; set; }
 
         // اضافه کردن این فیلد برای نگهداری وام‌هایی که به عنوان ضامن در آنها حضور دارد
-        public virtual ICollection<Tvam> GuarantorLoans { get; set; }  // ارتباط یک به چند با وام‌ها
+        public virtual ICollection<Tvam> GuarantorLoans { get; set; } = new List<Tvam>();  // مقدار پیش‌فرض یک لیست خالی
+
     }
 }

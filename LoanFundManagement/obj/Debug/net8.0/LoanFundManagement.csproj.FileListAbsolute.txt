@@ -153,7 +153,6 @@ D:\Saei\LoanFundManagement\LoanFundManagement\obj\Debug\net8.0\staticwebassets\m
 D:\Saei\LoanFundManagement\LoanFundManagement\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.LoanFundManagement.props
 D:\Saei\LoanFundManagement\LoanFundManagement\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.LoanFundManagement.props
 D:\Saei\LoanFundManagement\LoanFundManagement\obj\Debug\net8.0\staticwebassets.pack.json
-D:\Saei\LoanFundManagement\LoanFundManagement\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
 D:\Saei\LoanFundManagement\LoanFundManagement\obj\Debug\net8.0\LoanFund.5790CF1C.Up2Date
 D:\Saei\LoanFundManagement\LoanFundManagement\obj\Debug\net8.0\LoanFundManagement.dll
 D:\Saei\LoanFundManagement\LoanFundManagement\obj\Debug\net8.0\refint\LoanFundManagement.dll
@@ -287,3 +286,6 @@ D:\Saei\LoanFundManagement\LoanFundManagement\bin\Debug\net8.0\runtimes\win\lib\
 D:\Saei\LoanFundManagement\LoanFundManagement\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Drawing.Common.dll
 D:\Saei\LoanFundManagement\LoanFundManagement\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Security.Cryptography.ProtectedData.dll
 D:\Saei\LoanFundManagement\LoanFundManagement\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Windows.Extensions.dll
+D:\Saei\LoanFundManagement\LoanFundManagement\obj\Debug\net8.0\LoanFundManagement.sourcelink.json
+D:\Saei\LoanFundManagement\LoanFundManagement\bin\Debug\net8.0\Serilog.dll
+D:\Saei\LoanFundManagement\LoanFundManagement\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "wRSZ91jHRNE=",
+  "dgSpecHash": "l9zMd+atNGQ=",
   "success": true,
   "projectFilePath": "D:\\Saei\\LoanFundManagement\\LoanFundManagement\\LoanFundManagement.csproj",
   "expectedPackageFiles": [
@@ -114,6 +114,7 @@
     "C:\\Users\\adminluminiz\\.nuget\\packages\\nuget.projectmodel\\6.11.0\\nuget.projectmodel.6.11.0.nupkg.sha512",
     "C:\\Users\\adminluminiz\\.nuget\\packages\\nuget.protocol\\6.11.0\\nuget.protocol.6.11.0.nupkg.sha512",
     "C:\\Users\\adminluminiz\\.nuget\\packages\\nuget.versioning\\6.11.0\\nuget.versioning.6.11.0.nupkg.sha512",
+    "C:\\Users\\adminluminiz\\.nuget\\packages\\serilog\\4.2.0\\serilog.4.2.0.nupkg.sha512",
     "C:\\Users\\adminluminiz\\.nuget\\packages\\sqlitepclraw.bundle_e_sqlite3\\2.1.10\\sqlitepclraw.bundle_e_sqlite3.2.1.10.nupkg.sha512",
     "C:\\Users\\adminluminiz\\.nuget\\packages\\sqlitepclraw.core\\2.1.10\\sqlitepclraw.core.2.1.10.nupkg.sha512",
     "C:\\Users\\adminluminiz\\.nuget\\packages\\sqlitepclraw.lib.e_sqlite3\\2.1.10\\sqlitepclraw.lib.e_sqlite3.2.1.10.nupkg.sha512",
